@@ -7,13 +7,10 @@ class BodyContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ActivitiesController(ActivitiesRepository()));
 
-    bool isDesktop = MediaQuery.of(context).size.width >= 1024;
-
     return ListView(
       children: [
         Container(
           margin: EdgeInsets.symmetric(vertical: 12),
-          width: isDesktop ? 600 : double.infinity,
           child: Column(
             children: [
               _HeaderWidget(controller: controller),

@@ -13,7 +13,7 @@ class _MobileContentViewActivities extends StatelessWidget {
         Center(
           child: Container(
             margin: EdgeInsets.symmetric(vertical: 12),
-            width: isDesktop ? 600 : double.infinity,
+            width: isDesktop ? 800 : double.infinity,
             child: Column(
               children: [
                 _HeaderWidget(controller: controller),

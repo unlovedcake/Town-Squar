@@ -76,12 +76,11 @@ class AppThemes {
       elevation: 0,
       centerTitle: false,
       foregroundColor: AppColors.background,
-      titleTextStyle: GoogleFonts.montserrat(
-        textStyle: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-          color: AppColors.textPrimary,
-        ),
+      titleTextStyle: const TextStyle(
+        fontFamily: 'SFProDisplay',
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: Colors.white,
       ),
     ),
     dividerTheme: const DividerThemeData(
@@ -124,6 +123,6 @@ class AppThemes {
       secondary: AppColors.lightIntensity,
       brightness: Brightness.dark,
     ),
-    textTheme: GoogleFonts.interTextTheme(),
+    //textTheme: GoogleFonts.interTextTheme(),
   );
 }

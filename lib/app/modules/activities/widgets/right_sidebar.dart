@@ -137,58 +137,56 @@ class _WeeklyWorkShopWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Weekly workshops for kids!",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Weekly workshops for kids!",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
             ),
-            const SizedBox(height: 4),
-            Text(
-              "Signup for early access to weekly activities for your kids full of learning and fun.",
-              style: controller.textTheme.bodyLarge
-                  ?.copyWith(fontSize: 12, color: AppColors.textPrimary, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "Signup for early access to weekly activities for your kids full of learning and fun.",
+            style: controller.textTheme.bodyLarge
+                ?.copyWith(fontSize: 12, color: AppColors.textPrimary, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: EdgeInsets.all(8),
+            height: 40,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            Container(
-              padding: EdgeInsets.all(8),
-              height: 40,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.background,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Learn more',
-                    style: controller.textTheme.bodyLarge
-                        ?.copyWith(fontSize: 14, color: AppColors.textPrimary, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                      height: controller.iconHeight,
-                      child: SvgPicture.asset(
-                        AssetPath.iconArrowForward,
-                      )),
-                ],
-              ),
-            )
-          ],
-        ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Learn more',
+                  style: controller.textTheme.bodyLarge
+                      ?.copyWith(fontSize: 14, color: AppColors.textPrimary, fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                    height: controller.iconHeight,
+                    child: SvgPicture.asset(
+                      AssetPath.iconArrowForward,
+                    )),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -217,95 +215,93 @@ class _CloseToGoalWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "You're close to your goal!",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "You're close to your goal!",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "Join more sport activities to collect more points",
+                  style: controller.textTheme.bodyLarge
+                      ?.copyWith(fontSize: 12, color: AppColors.textPrimary, fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    "Join more sport activities to collect more points",
-                    style: controller.textTheme.bodyLarge
-                        ?.copyWith(fontSize: 12, color: AppColors.textPrimary, fontWeight: FontWeight.w500),
-                  ),
-                ),
-                SizedBox(
-                  width: 33,
-                  height: 35,
-                  child: Obx(() => Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          CircularProgressIndicator(
-                            value: controller.progress.value,
-                            strokeWidth: 4,
-                            backgroundColor: AppColors.background,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              AppColors.primary600,
+              SizedBox(
+                width: 33,
+                height: 35,
+                child: Obx(() => Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        CircularProgressIndicator(
+                          value: controller.progress.value,
+                          strokeWidth: 4,
+                          backgroundColor: AppColors.background,
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            AppColors.primary600,
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            '${controller.displayPercentage.value}',
+                            style: controller.textTheme.bodyLarge?.copyWith(
+                              fontSize: 14,
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Center(
-                            child: Text(
-                              '${controller.displayPercentage.value}',
-                              style: controller.textTheme.bodyLarge?.copyWith(
-                                fontSize: 14,
-                                color: AppColors.textPrimary,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  child: Text(
-                    "join now".tr,
-                    style: controller.textTheme.bodyLarge
-                        ?.copyWith(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.background),
+                        ),
+                      ],
+                    )),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 11),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  child: Text(
-                    "my points".tr,
-                    style: controller.textTheme.bodyLarge
-                        ?.copyWith(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.background),
+                child: Text(
+                  "join now".tr,
+                  style: controller.textTheme.bodyLarge
+                      ?.copyWith(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.background),
+                ),
+              ),
+              const SizedBox(width: 11),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+                child: Text(
+                  "my points".tr,
+                  style: controller.textTheme.bodyLarge
+                      ?.copyWith(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors.background),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

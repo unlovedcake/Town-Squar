@@ -33,6 +33,8 @@ class ActivitiesController extends GetxController {
   final activeButtonCategoryIndex = 1.obs;
   final activeButtonJoinIndex = 0.obs;
 
+  final activeButtonLeftSidebarIndex = 'Activities'.obs;
+
   final activeButtonSideBar = 0.obs;
   final iconHeight = 24.0;
 
@@ -107,23 +109,15 @@ class ActivitiesController extends GetxController {
     },
   ];
 
-  void updateHoveredItem(String item) {
-    hoveredItem.value = item;
-  }
-
-  void clearHoveredItem() {
-    hoveredItem.value = '';
-  }
-
   void _startAnimation() async {
-    int currentValue = 0; // Start value for the counter
-    const duration = Duration(milliseconds: 30); // Time between each increment
+    int currentValue = 0;
+    const duration = Duration(milliseconds: 30);
 
     while (currentValue <= givenValue) {
       await Future.delayed(duration, () {
-        progress.value = currentValue / maxValue; // Update progress value
-        displayPercentage.value = currentValue; // Update display value
-        currentValue++; // Increment the counter
+        progress.value = currentValue / maxValue;
+        displayPercentage.value = currentValue;
+        currentValue++;
       });
     }
   }
