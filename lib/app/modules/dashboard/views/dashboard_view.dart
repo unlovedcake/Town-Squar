@@ -70,11 +70,6 @@ class DashboardView extends GetView<DashboardController> {
               height: iconHeight,
               AssetPath.iconBell,
             ),
-
-            // Image.asset(
-            //   AssetPath.iconActivities,
-            //   height: iconHeight,
-            // ),
             activeIcon: SvgPicture.asset(
               AssetPath.iconActivities,
               height: iconHeight,

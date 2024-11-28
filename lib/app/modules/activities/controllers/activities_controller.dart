@@ -265,44 +265,6 @@ class ActivitiesController extends GetxController {
     }
   }
 
-  Future<void> saveMultipleActivitiesToFirestore() async {
-    DateTime startOfToday = DateTime.now();
-    DateTime endOfToday = startOfToday.add(Duration(days: 1));
-    // Sample data template
-    Map<String, dynamic> activityTemplate = {
-      "available_spots": 2,
-      "category": "Sports",
-      "duration": "45",
-      "id": "", // We'll assign a unique ID for each item
-      "joined_list": [],
-      "location": "Beach Fit Studio",
-      "name": "beach Yoga",
-      "price": 19,
-      "size": ["high", "medium"],
-      "time": endOfToday, // Example time
-    };
-
-    try {
-      // Reference to the Firestore collection
-      CollectionReference activities = FirebaseFirestore.instance.collection('activities');
-
-      for (int i = 1; i <= 5; i++) {
-        // Clone the template and customize it for each item
-        Map<String, dynamic> activityData = Map.from(activityTemplate);
-        activityData['id'] = "sports_$i"; // Assign a unique ID
-        activityData['name'] = "Football Childcare $i"; // Customize the name
-        activityData['available_spots'] = i; // Example customization of available spots
-        activityData['price'] = 12 + i; // Increment the price for variety
-
-        // Save to Firestore
-        await activities.doc(activityData['id']).set(activityData);
-        print("Saved activity_$i successfully!");
-      }
-    } catch (e) {
-      print("Error saving activities: $e");
-    }
-  }
-
   Future<void> saveJoin(ActivitiesModel activity) async {
     _statusJoin.value = ActivitiesJoinStatus.saving;
 
