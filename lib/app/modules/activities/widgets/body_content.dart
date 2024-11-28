@@ -261,7 +261,6 @@ class _ActivitiesListViewWidget extends StatelessWidget {
                                             ),
                                             child: Row(
                                               children: [
-                                                // Text and buttons section
                                                 Expanded(
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -6,13 +6,11 @@ import 'package:get/get.dart';
 import 'package:town_squar/app/helpers/asset_path.dart';
 import 'package:town_squar/app/helpers/my_logger.dart';
 import 'package:town_squar/app/helpers/responsive.dart';
-import 'package:town_squar/app/models/activities_model.dart';
 import 'package:town_squar/app/modules/community/views/community_view.dart';
 import 'package:town_squar/app/modules/locations/views/locations_view.dart';
 import 'package:town_squar/app/modules/repositories/activities_repository.dart';
 import 'package:town_squar/app/modules/services/views/services_view.dart';
 import 'package:town_squar/app/themes/app_colors.dart';
-import 'package:town_squar/app/themes/app_theme.dart';
 
 import '../controllers/activities_controller.dart';
 

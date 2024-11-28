@@ -7,10 +7,7 @@ import 'package:town_squar/app/helpers/custom_snackbar.dart';
 import 'package:town_squar/app/helpers/firebase_instance.dart';
 import 'package:town_squar/app/helpers/my_logger.dart';
 import 'package:town_squar/app/models/activities_model.dart';
-import 'package:town_squar/app/modules/locations/controllers/locations_controller.dart';
 import 'package:town_squar/app/modules/repositories/activities_repository.dart';
-import 'package:town_squar/app/modules/services/controllers/services_controller.dart';
-import 'package:town_squar/app/routes/app_pages.dart';
 import 'package:town_squar/app/themes/app_colors.dart';
 
 enum ActivitiesStatus { initial, loading, loaded, empty, error }
@@ -57,10 +54,6 @@ class ActivitiesController extends GetxController {
     {
       'text': '',
       'icon': AssetPath.iconSliders,
-    },
-    {
-      'text': 'All',
-      'icon': '',
     },
     {
       'text': 'Sports',
@@ -110,6 +103,55 @@ class ActivitiesController extends GetxController {
       'icon': AssetPath.iconCommunity,
     },
   ];
+
+  @override
+  void onInit() {
+    super.onInit();
+    textTheme = Theme.of(ctx!).textTheme;
+    fetchActivities();
+    _startAnimation();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  void gotoPage(String page) {
+    switch (page) {
+      case 'Activities':
+
+        //Get.toNamed(AppPages.DASHBOARD);
+        break;
+      case 'Locations':
+        // Get.lazyPut(() => LocationsController());
+
+        // Get.toNamed(AppPages.LOCATIONS);
+        break;
+
+      case 'Services':
+        // Get.lazyPut(() => ServicesController());
+        // Get.toNamed(AppPages.SERVICES);
+        break;
+
+      case 'Communities':
+        //Get.toNamed(AppPages.COMMUNITY);
+        break;
+
+      case 'Notifications':
+        break;
+
+      case 'Create':
+        break;
+
+      default:
+    }
+  }
 
   void _startAnimation() async {
     int currentValue = 0;
@@ -165,55 +207,6 @@ class ActivitiesController extends GetxController {
     }
 
     return color;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    textTheme = Theme.of(ctx!).textTheme;
-    fetchActivities();
-    _startAnimation();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void gotoPage(String page) {
-    switch (page) {
-      case 'Activities':
-
-        //Get.toNamed(AppPages.DASHBOARD);
-        break;
-      case 'Locations':
-        // Get.lazyPut(() => LocationsController());
-
-        // Get.toNamed(AppPages.LOCATIONS);
-        break;
-
-      case 'Services':
-        // Get.lazyPut(() => ServicesController());
-        // Get.toNamed(AppPages.SERVICES);
-        break;
-
-      case 'Communities':
-        //Get.toNamed(AppPages.COMMUNITY);
-        break;
-
-      case 'Notifications':
-        break;
-
-      case 'Create':
-        break;
-
-      default:
-    }
   }
 
   void fetchActivities() {
