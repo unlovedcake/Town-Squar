@@ -40,8 +40,8 @@ Follow these steps to get started:
 
 1. Clone the Repository
 
-• git clone https://github.com/yourusername/booking-reservation-app.git
-• cd booking-reservation-app
+• git clone https://github.com/unlovedcake/Town-Squar
+• cd town_squar
 
 2. Install Dependencies
    Run the following command to install all necessary packages:

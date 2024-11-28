@@ -216,205 +216,217 @@ class _ActivitiesListViewWidget extends StatelessWidget {
                               itemCount: controller.activities.length,
                               itemBuilder: (context, index) {
                                 final activity = controller.activities[index];
-                                return Stack(
-                                  children: [
-                                    Positioned(
-                                      left: 6,
-                                      top: 0,
-                                      bottom: 0,
-                                      child: DottedBorder(
-                                        borderType: BorderType.Rect,
-                                        dashPattern: [6, 8],
-                                        color: AppColors.neutral500,
-                                        strokeWidth: 2,
-                                        customPath: (size) {
-                                          // Only draw the left border
-                                          return Path()
-                                            ..moveTo(0, 0)
-                                            ..lineTo(0, size.height);
-                                        },
-                                        child: SizedBox(
-                                          width: 1,
-                                          height: double.infinity,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      margin: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
-                                      padding: const EdgeInsets.all(16.0),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.white,
-                                        borderRadius: BorderRadius.circular(12),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(0.1),
-                                            blurRadius: 8,
-                                            offset: const Offset(0, 2),
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
+                                return Animate()
+                                    .custom(
+                                      duration: Duration(seconds: 1),
+                                      begin: 1,
+                                      end: 0,
+                                      builder: (_, value, __) => Stack(
                                         children: [
-                                          // Text and buttons section
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                          Positioned(
+                                            left: 6,
+                                            top: 0,
+                                            bottom: 0,
+                                            child: DottedBorder(
+                                              borderType: BorderType.Rect,
+                                              dashPattern: [6, 8],
+                                              color: AppColors.neutral500,
+                                              strokeWidth: 2,
+                                              customPath: (size) {
+                                                // Only draw the left border
+                                                return Path()
+                                                  ..moveTo(0, 0)
+                                                  ..lineTo(0, size.height);
+                                              },
+                                              child: SizedBox(
+                                                width: 1,
+                                                height: double.infinity,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: double.infinity,
+                                            margin: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
+                                            padding: const EdgeInsets.all(16.0),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.white,
+                                              borderRadius: BorderRadius.circular(12),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black.withOpacity(0.1),
+                                                  blurRadius: 8,
+                                                  offset: const Offset(0, 2),
+                                                ),
+                                              ],
+                                            ),
+                                            child: Row(
                                               children: [
-                                                Text(
-                                                  '${controller.displayFormatTime(activity.time.toString())} (${activity.duration} min)',
-                                                  style: controller.textTheme.bodyLarge?.copyWith(
-                                                      fontSize: 12,
-                                                      color: AppColors.neutral500,
-                                                      fontWeight: FontWeight.w500),
-                                                ),
-                                                const SizedBox(height: 4),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      activity.name,
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: Colors.black87,
+                                                // Text and buttons section
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        '${controller.displayFormatTime(activity.time.toString())} (${activity.duration} min)',
+                                                        style: controller.textTheme.bodyLarge?.copyWith(
+                                                            fontSize: 12,
+                                                            color: AppColors.neutral500,
+                                                            fontWeight: FontWeight.w500),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(right: 18.0),
-                                                      child: Text(
-                                                        '${activity.price}€',
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.bold,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(height: 4),
-                                                Row(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      AssetPath.iconMapPin,
-                                                    ),
-                                                    Text(
-                                                      activity.location,
-                                                      style: controller.textTheme.bodyLarge?.copyWith(
-                                                          fontSize: 12,
-                                                          color: AppColors.neutral500,
-                                                          fontWeight: FontWeight.w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(height: 4),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: 25,
-                                                      child: ElevatedButton.icon(
-                                                        onPressed: () {},
-                                                        style: ElevatedButton.styleFrom(
-                                                          backgroundColor: AppColors.neutral200,
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(4),
-                                                          ),
-                                                        ),
-                                                        icon: Icon(
-                                                          Icons.person_2_outlined,
-                                                          size: 20,
-                                                          color: AppColors.neutral500,
-                                                        ),
-                                                        label: Text(
-                                                          "${activity.availableSpots} spots left".tr,
-                                                          style: controller.textTheme.bodyLarge?.copyWith(
-                                                              fontSize: 10,
-                                                              fontWeight: FontWeight.w500,
-                                                              color: AppColors.textSecondary),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 2,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 25,
-                                                      child: Row(
-                                                        children: List.generate(
-                                                          activity.size.length,
-                                                          (index) => Container(
-                                                            margin: const EdgeInsets.symmetric(horizontal: 2.0),
-                                                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                                                            decoration: BoxDecoration(
-                                                              color: controller.colorBGSize(activity.size[index]),
-                                                              borderRadius: BorderRadius.circular(4.0),
+                                                      const SizedBox(height: 4),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            activity.name,
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight: FontWeight.bold,
+                                                              color: Colors.black87,
                                                             ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                activity.size[index],
-                                                                style: TextStyle(
-                                                                  color: controller.colorTextSize(activity.size[index]),
-                                                                  fontSize: 10.0,
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(right: 18.0),
+                                                            child: Text(
+                                                              '${activity.price}€',
+                                                              style: TextStyle(
+                                                                fontSize: 18,
+                                                                fontWeight: FontWeight.bold,
+                                                                color: Colors.black87,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(height: 4),
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            AssetPath.iconMapPin,
+                                                          ),
+                                                          Text(
+                                                            activity.location,
+                                                            style: controller.textTheme.bodyLarge?.copyWith(
+                                                                fontSize: 12,
+                                                                color: AppColors.neutral500,
+                                                                fontWeight: FontWeight.w500),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(height: 4),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 25,
+                                                            child: ElevatedButton.icon(
+                                                              onPressed: () {},
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: AppColors.neutral200,
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(4),
+                                                                ),
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons.person_2_outlined,
+                                                                size: 20,
+                                                                color: AppColors.neutral500,
+                                                              ),
+                                                              label: Text(
+                                                                "${activity.availableSpots} spots left".tr,
+                                                                style: controller.textTheme.bodyLarge?.copyWith(
+                                                                    fontSize: 10,
+                                                                    fontWeight: FontWeight.w500,
+                                                                    color: AppColors.textSecondary),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 2,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 25,
+                                                            child: Row(
+                                                              children: List.generate(
+                                                                activity.size.length,
+                                                                (index) => Container(
+                                                                  margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                                                                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                                                  decoration: BoxDecoration(
+                                                                    color: controller.colorBGSize(activity.size[index]),
+                                                                    borderRadius: BorderRadius.circular(4.0),
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      activity.size[index],
+                                                                      style: TextStyle(
+                                                                        color: controller
+                                                                            .colorTextSize(activity.size[index]),
+                                                                        fontSize: 10.0,
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Spacer(),
-                                                    SizedBox(
-                                                      height: 35,
-                                                      child: Obx(() => ElevatedButton(
-                                                            onPressed: activity.availableSpots == 0 ||
-                                                                    activity.joinedList.contains('userid123')
-                                                                ? null
-                                                                : () {
-                                                                    controller.activeButtonJoinIndex.value = index;
-                                                                    controller.saveJoin(activity);
-                                                                  },
-                                                            style: ElevatedButton.styleFrom(
-                                                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                                              disabledBackgroundColor: AppColors.neutral500,
-                                                              backgroundColor: AppColors.textPrimary,
-                                                              shape: RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius.circular(4),
-                                                              ),
-                                                            ),
-                                                            child: controller.activeButtonJoinIndex.value == index &&
-                                                                    controller.statusJoin == ActivitiesJoinStatus.saving
-                                                                ? SizedBox(
-                                                                    height: 20,
-                                                                    width: 20,
-                                                                    child: CircularProgressIndicator(
-                                                                      strokeWidth: 1,
-                                                                      color: AppColors.lightIntensity,
-                                                                    ))
-                                                                : Text(
-                                                                    activity.joinedList.contains('userid123')
-                                                                        ? 'Joined'
-                                                                        : activity.availableSpots != 0
-                                                                            ? 'join'.tr
-                                                                            : 'Sold Out'.tr,
-                                                                    style: controller.textTheme.bodyLarge?.copyWith(
-                                                                        fontSize: 12,
-                                                                        fontWeight: FontWeight.w400,
-                                                                        color: AppColors.background),
+                                                          Spacer(),
+                                                          SizedBox(
+                                                            height: 35,
+                                                            child: Obx(() => ElevatedButton(
+                                                                  onPressed: activity.availableSpots == 0 ||
+                                                                          activity.joinedList.contains('userid123')
+                                                                      ? null
+                                                                      : () {
+                                                                          controller.activeButtonJoinIndex.value =
+                                                                              index;
+                                                                          controller.saveJoin(activity);
+                                                                        },
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                                    disabledBackgroundColor: AppColors.neutral500,
+                                                                    backgroundColor: AppColors.textPrimary,
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(4),
+                                                                    ),
                                                                   ),
-                                                          )),
-                                                    ),
-                                                  ],
+                                                                  child:
+                                                                      controller.activeButtonJoinIndex.value == index &&
+                                                                              controller.statusJoin ==
+                                                                                  ActivitiesJoinStatus.saving
+                                                                          ? SizedBox(
+                                                                              height: 20,
+                                                                              width: 20,
+                                                                              child: CircularProgressIndicator(
+                                                                                strokeWidth: 1,
+                                                                                color: AppColors.lightIntensity,
+                                                                              ))
+                                                                          : Text(
+                                                                              activity.joinedList.contains('userid123')
+                                                                                  ? 'Joined'
+                                                                                  : activity.availableSpots != 0
+                                                                                      ? 'join'.tr
+                                                                                      : 'Sold Out'.tr,
+                                                                              style: controller.textTheme.bodyLarge
+                                                                                  ?.copyWith(
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                      color: AppColors.background),
+                                                                            ),
+                                                                )),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                );
+                                    )
+                                    .flip();
                               })),
             ],
           ),

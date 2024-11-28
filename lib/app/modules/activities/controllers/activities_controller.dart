@@ -265,8 +265,48 @@ class ActivitiesController extends GetxController {
     }
   }
 
+  Future<void> saveMultipleActivitiesToFirestore() async {
+    DateTime startOfToday = DateTime.now();
+    DateTime endOfToday = startOfToday.add(Duration(days: 1));
+    // Sample data template
+    Map<String, dynamic> activityTemplate = {
+      "available_spots": 2,
+      "category": "Sports",
+      "duration": "45",
+      "id": "", // We'll assign a unique ID for each item
+      "joined_list": [],
+      "location": "Beach Fit Studio",
+      "name": "beach Yoga",
+      "price": 19,
+      "size": ["high", "medium"],
+      "time": endOfToday, // Example time
+    };
+
+    try {
+      // Reference to the Firestore collection
+      CollectionReference activities = FirebaseFirestore.instance.collection('activities');
+
+      for (int i = 1; i <= 5; i++) {
+        // Clone the template and customize it for each item
+        Map<String, dynamic> activityData = Map.from(activityTemplate);
+        activityData['id'] = "sports_$i"; // Assign a unique ID
+        activityData['name'] = "Football Childcare $i"; // Customize the name
+        activityData['available_spots'] = i; // Example customization of available spots
+        activityData['price'] = 12 + i; // Increment the price for variety
+
+        // Save to Firestore
+        await activities.doc(activityData['id']).set(activityData);
+        print("Saved activity_$i successfully!");
+      }
+    } catch (e) {
+      print("Error saving activities: $e");
+    }
+  }
+
   Future<void> saveJoin(ActivitiesModel activity) async {
     _statusJoin.value = ActivitiesJoinStatus.saving;
+
+    print('HOYS');
     WriteBatch batch = firestore.batch();
 
     final Map<String, dynamic> joinedData = {
@@ -291,13 +331,29 @@ class ActivitiesController extends GetxController {
     try {
       await batch.commit();
       _statusJoin.value = ActivitiesJoinStatus.success;
+
       CustomSnackBar.showCustomSuccessSnackBar(
-          icon: Icon(Icons.check), title: 'Success', message: 'Successfully joined ${activity.name}');
-    } catch (e) {
+          icon: Icon(Icons.check),
+          title: 'Success',
+          message: 'Successfully joined ${activity.name}',
+          duration: Duration(seconds: 3));
+
+      Future.delayed(Duration(seconds: 20), () {
+        if (_statusJoin.value == ActivitiesJoinStatus.saving) {
+          CustomSnackBar.showCustomErrorToast(
+              icon: Icon(Icons.error), title: 'Error', message: 'Network unavailable. Please try again later.');
+        }
+      });
+    } on FirebaseException catch (e) {
+      MyLogger.printError('Error: ${e.code}');
+      if (e.code == 'unavailable') {
+        CustomSnackBar.showCustomErrorToast(
+            icon: Icon(Icons.error), title: 'Error', message: 'Network unavailable. Please try again later.');
+      } else {
+        CustomSnackBar.showCustomErrorToast(icon: Icon(Icons.error), title: 'Error', message: e.toString());
+      }
+
       _statusJoin.value = ActivitiesJoinStatus.error;
-      CustomSnackBar.showCustomErrorToast(icon: Icon(Icons.error), title: 'Error', message: e.toString());
-    } finally {
-      _statusJoin.value = ActivitiesJoinStatus.initial;
     }
   }
 }
