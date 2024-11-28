@@ -140,6 +140,9 @@ class _WeeklyWorkShopWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 50,
+          ),
           Text(
             "Weekly workshops for kids!",
             style: TextStyle(

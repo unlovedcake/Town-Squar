@@ -281,7 +281,7 @@ class _ActivitiesListViewWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(right: 22.0),
+                                                      padding: const EdgeInsets.only(right: 18.0),
                                                       child: Text(
                                                         '${activity.price}€',
                                                         style: TextStyle(
@@ -376,6 +376,7 @@ class _ActivitiesListViewWidget extends StatelessWidget {
                                                                     controller.saveJoin(activity);
                                                                   },
                                                             style: ElevatedButton.styleFrom(
+                                                              padding: EdgeInsets.symmetric(horizontal: 8.0),
                                                               disabledBackgroundColor: AppColors.neutral500,
                                                               backgroundColor: AppColors.textPrimary,
                                                               shape: RoundedRectangleBorder(
@@ -430,7 +431,7 @@ class _CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ActivitiesController(ActivitiesRepository()));
     return Container(
-      margin: EdgeInsets.only(left: 18, bottom: 6),
+      margin: EdgeInsets.only(left: 18, bottom: 8),
       width: double.infinity,
       height: 27,
       child: ListView.builder(

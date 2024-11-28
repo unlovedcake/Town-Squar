@@ -7,7 +7,9 @@ import 'package:town_squar/app/helpers/custom_snackbar.dart';
 import 'package:town_squar/app/helpers/firebase_instance.dart';
 import 'package:town_squar/app/helpers/my_logger.dart';
 import 'package:town_squar/app/models/activities_model.dart';
+import 'package:town_squar/app/modules/locations/controllers/locations_controller.dart';
 import 'package:town_squar/app/modules/repositories/activities_repository.dart';
+import 'package:town_squar/app/modules/services/controllers/services_controller.dart';
 import 'package:town_squar/app/routes/app_pages.dart';
 import 'package:town_squar/app/themes/app_colors.dart';
 
@@ -186,18 +188,22 @@ class ActivitiesController extends GetxController {
   void gotoPage(String page) {
     switch (page) {
       case 'Activities':
-        Get.toNamed(AppPages.DASHBOARD);
+
+        //Get.toNamed(AppPages.DASHBOARD);
         break;
       case 'Locations':
-        Get.toNamed(AppPages.LOCATIONS);
+        // Get.lazyPut(() => LocationsController());
+
+        // Get.toNamed(AppPages.LOCATIONS);
         break;
 
       case 'Services':
-        Get.toNamed(AppPages.SERVICES);
+        // Get.lazyPut(() => ServicesController());
+        // Get.toNamed(AppPages.SERVICES);
         break;
 
       case 'Communities':
-        Get.toNamed(AppPages.COMMUNITY);
+        //Get.toNamed(AppPages.COMMUNITY);
         break;
 
       case 'Notifications':

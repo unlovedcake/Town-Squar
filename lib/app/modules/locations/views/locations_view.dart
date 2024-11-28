@@ -8,16 +8,11 @@ class LocationsView extends GetView<LocationsController> {
   const LocationsView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('LocationsView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'LocationsView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+    //final controller = Get.find<LocationsController>();
+    return const Center(
+      child: Text(
+        'LocationsView is working',
+        style: TextStyle(fontSize: 20, color: Colors.black),
       ),
     );
   }
